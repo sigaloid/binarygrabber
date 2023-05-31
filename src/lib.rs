@@ -1,5 +1,4 @@
 #![allow(dead_code)]
-#![feature(anonymous_lifetime_in_impl_trait)]
 
 use log::{info, trace};
 use std::{fs::File, io::Write, path::Path};
@@ -50,7 +49,7 @@ pub struct BinaryGrabber {
     args: Vec<String>,
 }
 impl BinaryGrabber {
-    pub fn new(manifest: BinaryManifest, args: impl AsRef<[&str]>) -> BinaryGrabber {
+    pub fn new<'a>(manifest: BinaryManifest, args: impl AsRef<[&'a str]>) -> BinaryGrabber {
         BinaryGrabber {
             manifest,
             args: args
